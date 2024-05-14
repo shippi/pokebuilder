@@ -8,12 +8,29 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      animation: { 
+        fadeIn: 'fadeIn 1.2s ease-in-out'
       },
+      keyframes: {
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "33%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)"
+          }
+        }
+      }
     },
+    fontFamily: {
+      roboto: ["Roboto", "sans-serif"]
+    }
   },
   plugins: [],
 };
