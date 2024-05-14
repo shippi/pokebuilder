@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       
-      <body className={inter.className + " bg-[linear-gradient(to_top,rgba(229,231,235,0.98),rgba(249,250,251,1)),url('/halftone.svg')] bg-bottom h-screen"}>
+      <body className={inter.className + " bg-[linear-gradient(to_top,rgba(229,231,235,0.97),rgba(249,250,251,1)),url('/halftone.svg')] bg-bottom h-screen"}>
         <NavBar/>
         {children}
       </body>
