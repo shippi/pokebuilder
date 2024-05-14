@@ -13,13 +13,14 @@ export function Lucario(props) {
   const modelRef = useRef(null);
 
   useFrame(() => {
-    if (modelRef.current.position.z > 0) modelRef.current.position.z -= modelRef.current.position.z * 0.025;
+    if (modelRef.current.position.z > -3) modelRef.current.position.z -= modelRef.current.position.z * 0.025;
     if (modelRef.current.rotation.x > 0) modelRef.current.rotation.x -= modelRef.current.rotation.x * 0.025;
+    modelRef.current.rotation.y += 0.001;
   })
 
   return (
     <group {...props} dispose={null}>
-      <group rotation={[0.3, 0.489, 0]} scale={0.025} position={[0, -1.7, 1]} ref={modelRef}>
+      <group rotation={[0.3, -0.6, 0]} scale={0.035} position={[0, -2.5, 1]} ref={modelRef}>
       <primitive object={nodes.pm0448_51} />
         <skinnedMesh geometry={nodes.LucarioMega_1.geometry} material={materials.Material__191} skeleton={nodes.LucarioMega_1.skeleton} />
         <skinnedMesh geometry={nodes.LucarioMega_2.geometry} material={materials.Material__192} skeleton={nodes.LucarioMega_2.skeleton} />

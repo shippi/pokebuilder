@@ -7,7 +7,7 @@ function Scene() {
   return (
     <Canvas camera={{ fov: 50 }} className='z-10 animate-fadeIn'>
       <OrbitControls enableZoom={false} enablePan={false}/>
-      <ambientLight intensity={2.5}/>
+      <ambientLight intensity={4}/>
       <Environment preset='sunset'/>
       <Suspense fallback={null}>
 			  <Lucario/>
