@@ -2,16 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 function LoadingScreen() {
   const [counter, setCounter] = useState(1);
-  const periods = ".".repeat(counter % 4);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter(counter + 1);
-    }, 200);
 
-    return () => {
-      clearInterval(interval);
-    };
-  });
   return (
     <div className="flex justify-center items-center h-screen w-screen fixed top-0 overflow-hidden bg-gray-100 z-50">
     <div

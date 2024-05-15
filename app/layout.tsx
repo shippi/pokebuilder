@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/NavBar";
+import { ThemeContextProvider } from "@/context/ThemeContext";
+import Html from "@/components/Html";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    
+      <ThemeContextProvider>
+        <Html children={children}/>
+      </ThemeContextProvider>
       
-      <body className={inter.className + " bg-[linear-gradient(to_top,rgba(229,231,235,0.97),rgba(249,250,251,1)),url('/halftone.svg')] bg-bottom h-screen"}>
-        <NavBar/>
-        {children}
-      </body>
-    </html>
   );
 }
