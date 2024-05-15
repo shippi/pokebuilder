@@ -22,7 +22,7 @@ export default function Home() {
         <Scene/>
         </div>
         <main className="h-full flex justify-center items-center">
-          <div className="flex flex-wrap flex-col items-center absolute w-full max-w-[1500px] overflow-x-hidden bg-[rgba(0,0,0,0.2)] py-10 mb-36 z-1 animate-fadeIn lg:bg-transparent lg:items-start lg:w-[90vw]">
+          <div className="flex flex-wrap flex-col items-center absolute w-full max-w-[1500px] overflow-x-hidden bg-[rgba(0,0,0,0.2)] py-10 mb-12 z-1 animate-fadeIn lg:bg-transparent lg:items-start lg:w-[90vw]">
             <h1 className="w-full font-roboto font-black text-center text-white text-[18vw] leading-none -skew-x-12 z-0 lg:text-[186px] lg:text-stone-700 dark:text-white" style={{wordSpacing: "-60px"}}>
               POKÉ BUILDER
             </h1>
