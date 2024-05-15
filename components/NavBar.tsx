@@ -8,10 +8,10 @@ import { ThemeContext } from "@/context/ThemeContext";
 function NavBar() {
   const { theme, setTheme } = useContext(ThemeContext);
   return (
-    <>
-      <nav className="flex items-center absolute top-[20px] left-1/2 transform -translate-x-1/2 max-w-[700px] min-w-[324px] w-[90vw] h-12 bg-white z-20 rounded-full border-2 drop-shadow-md dark:bg-stone-900 dark:text-white dark:border-stone-700">
-      <Link href="" className="flex items-center justify-center w-[150px] h-full rounded-l-full hover:bg-gray-200  dark:hover:bg-stone-700">Pokédex</Link>
-      <Link href="" className="flex items-center justify-center w-[150px] h-full hover:bg-gray-200  dark:hover:bg-stone-700">Team Builder</Link>
+    <nav className="flex items-center mt-6 max-w-[700px] min-w-[324px] w-[90vw] h-12 bg-white z-20 rounded-full border-2 drop-shadow-md dark:bg-stone-900 dark:text-white dark:border-stone-700">
+      <Link href="/" className="flex items-center justify-center px-8 h-full rounded-l-full hover:bg-gray-200  dark:hover:bg-stone-700">Home</Link>
+      <Link href="/pokedex" className="flex items-center px-8 justify-center h-full hover:bg-gray-200  dark:hover:bg-stone-700">Pokédex</Link>
+      <Link href="" className="flex items-center px-8 justify-center h-full hover:bg-gray-200  dark:hover:bg-stone-700">Team Builder</Link>
       
       <div className="flex items-center h-full ml-auto">
         <div className="h-[24px] w-[1px] mx-2 bg-neutral-200 "/>
@@ -36,11 +36,7 @@ function NavBar() {
           <i className="bi bi-github text-stone-500 dark:text-white"/>
         </Link>
       </div>
-
-
     </nav>
-    </>
-
   )
 }
 
