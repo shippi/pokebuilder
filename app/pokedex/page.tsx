@@ -16,7 +16,7 @@ function Pokedex() {
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["pokemon"],
 		queryFn: async() => {
-			const { data } = await axios.get(process.env.NEXT_PUBLIC_POKEMON_API + "pokemon");
+			const { data } = await axios.get(process.env.NEXT_PUBLIC_POKEMON_API + "pokemon?limit=" + GEN_COUNTS[0]);
 			return data.results as PokemonData[];
 		}
 	});
@@ -66,12 +66,12 @@ function Pokedex() {
 							</button>
 						</label>
         </header>
-				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-6 p-4 bg-stone-800 ${isLoading && "justify-center items-center"}`} style={{height: sectionHeight}} ref={listRef}>
+				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-2 gap-y-12 p-4 bg-stone-800 sm:gap-x-6 ${isLoading && "justify-center items-center"}`} style={{height: sectionHeight}} ref={listRef}>
 					{
 						isLoading ? 
 						<Spinner/>
 						:
-						data?.map(item => <PokemonCard data={item}/>)
+						data?.map(item => <PokemonCard pokemonData={item}/>)
 					}			
 				</section>
     </main>

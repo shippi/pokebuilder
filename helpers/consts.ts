@@ -1,2 +1,2 @@
-export const POKEMON_TYPES = ["dark", "electric", "fairy", "fighting", "ground", "ice", "normal", "poison", "rock", "steel", "water"]
+export const POKEMON_TYPES = ["bug", "dark", "dragon", "electric", "fairy", "fighting", "fire", "flying", "ghost", "grass", "ground", "ice", "normal", "poison", "rock", "steel", "water"]
 export const GEN_COUNTS = [151, 100, 135, 107, 156, 72, 88, 96, 120]

@@ -27,12 +27,14 @@ export default function Home() {
               POKÉ BUILDER
             </h1>
             <div className="h-6 lg:h-12"/>
-            <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-between w-full">
+            <div className="flex flex-wrap gap-8 items-center justify-center gap-2 w-[95vw] lg:justify-between lg:w-full">
               <h2 className="text-[20px] font-medium text-white md:text-xl lg:text-2xl lg:text-stone-700 dark:text-white">Create and plan your Pokémon teams!</h2>
-              <div className="flex flex-wrap items-center gap-[2px] lg:gap-4">
+              <div className="flex flex-wrap justify-center items-center gap-[2px] lg:gap-4">
               {
                 POKEMON_TYPES.map((type: string, i: number) => (
-                  <img key={i} className="w-8 lg:w-16" src={`/types_icons/${type}.svg`}/>
+                  <div className={`type ${type} w-8 lg:w-16 rounded-full`}>
+                    <img key={i} src={`/types_icons/${type}.svg`}/>
+                  </div>
                 ))
               }
               </div>
