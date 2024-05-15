@@ -2,11 +2,17 @@
 
 import Link from "next/link"
 import Dropdown from "./UI/Dropdown";
-import { useContext } from "react";
-import { ThemeContext } from "@/context/ThemeContext";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 function NavBar() {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <nav className="flex items-center my-6 max-w-[700px] min-w-[324px] w-[90vw] h-12 max-h-10 bg-white z-20 rounded-full border-2 drop-shadow-md dark:bg-stone-900 dark:text-white dark:border-stone-700">
       <Link href="/" className="flex items-center justify-center px-8 h-full rounded-l-full hover:bg-gray-200  dark:hover:bg-stone-700">Home</Link>
@@ -18,7 +24,7 @@ function NavBar() {
         <Dropdown 
           listItemClassName="justify-center text-lg"
           selected={[
-            theme == "dark" ? <i key="selected" className="bi bi-moon text-xl"/> : <i key="selected" className="bi bi-sun text-xl"/>
+            resolvedTheme == "dark" && mounted ? <i key="selected" className="bi bi-moon text-xl"/> : mounted ? <i key="selected" className="bi bi-sun text-xl"/> : <i key="selected" className="w-5 h-7"/>
           ]}
           listItems={[
               <button className="w-full py-2" onClick={() => setTheme("light")}>

@@ -29,9 +29,9 @@ function Pokedex() {
             />
             <div className="h-[24px] w-[1px] bg-neutral-500 "/>
 						<label className="input flex items-center gap-2">
-  						<input type="text" className="p-1 focus:outline-none border-2 border-stone-300 focus:border-indigo-400" placeholder="Search" />
+  						<input type="text" className="p-1 focus:outline-none border border-stone-300 focus:border-indigo-400" placeholder="Search" />
   						<button className="bg-indigo-400 hover:bg-indigo-500">
-								<i className="fa-solid fa-magnifying-glass p-2 text-white"/>
+								<i className="fa fa-search p-[10px] text-white"/>
 							</button>
 						</label>
         </header>
