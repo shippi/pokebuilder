@@ -1,6 +1,6 @@
 'use client'
 import { GEN_COUNTS } from "@/helpers/consts"
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PokemonData } from "@/helpers/types";
 import axios from "axios";
@@ -21,9 +21,11 @@ function Pokedex() {
 		}
 	});
 
-	const listRef = useRef(null);
+	const listRef = useRef<HTMLElement>(null);
 
 	const currentGenText = currentGen == 0 ? "All Gens" : "Gen " + currentGen
+	const currentGenStart = [...GEN_COUNTS].slice(0, currentGen).reduce((a, b) => a + b, 0);
+	const currentGenEnd = currentGenStart + GEN_COUNTS[currentGen] || GEN_COUNTS.reduce((a, b) => a + b, 0);
 
 	const calculateSectionHeight = () => {
 		const bottom = document.getElementsByTagName("html")[0].getBoundingClientRect().bottom;
@@ -32,11 +34,24 @@ function Pokedex() {
 		return `${bottom-top}px`;
 	}
 
+	const scrollToRef = (ref: RefObject<HTMLElement>) => {
+		if (ref?.current) {
+			ref.current.scroll({
+				top: 0,
+				behavior: "smooth"
+			})
+		}
+	}
+
 	useWindowSizeChange(() => {	setSectionHeight(calculateSectionHeight()) })
 
 	useEffect(() => {
-		setSectionHeight(calculateSectionHeight())
-	}, [])
+		setSectionHeight(calculateSectionHeight());
+	}, []);
+
+	useEffect(() => {
+		scrollToRef(listRef);
+	}, [currentGen]);
 
   return (
 		
@@ -51,7 +66,7 @@ function Pokedex() {
 								selectedClassName="justify-between hover:bg-stone-200 dark:hover:bg-stone-900 dark:hover:text-indigo-300 hover:text-indigo-700"
                 selected={[currentGenText]} 
                 listItems = {[<button onClick={() => setCurrentGen(0)} className="w-full px-4 py-2 text-left">All Gens</button>, ...
-                    Array(GEN_COUNTS.length)
+                    Array(GEN_COUNTS.length - 1)
                         .fill(<li></li>)
                         .map((item, i) => (
                             <button className="w-full px-4 py-2 text-left" onClick={() => setCurrentGen(i + 1)}>
@@ -72,7 +87,7 @@ function Pokedex() {
 						isLoading ? 
 						<Spinner/>
 						:
-						data?.map(item => <PokemonCard pokemonData={item}/>)
+						data?.slice(currentGenStart, currentGenEnd).map(item => <PokemonCard pokemonData={item}/>)
 					}			
 				</section>
     </main>
