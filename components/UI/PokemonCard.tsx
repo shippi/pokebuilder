@@ -33,7 +33,7 @@ function PokemonCard({ pokemonData } : Props) {
           {
             data?.types.map((item: any) => {
               const type = item.type.name;
-              return <div className={`type ${type} w-[26px] rounded-full`}><img loading="lazy" src={`/types_icons/${type}.svg`}/></div>
+              return <div key={type} className={`type ${type} w-[26px] rounded-full`}><img loading="lazy" src={`/types_icons/${type}.svg`}/></div>
             })
           }
           </div>

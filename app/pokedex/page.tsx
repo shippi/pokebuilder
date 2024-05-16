@@ -8,10 +8,13 @@ import Dropdown from "@/components/UI/Dropdown"
 import Spinner from "@/components/UI/Spinner";
 import PokemonCard from "@/components/UI/PokemonCard";
 import useWindowSizeChange from "@/hooks/useWindowSizeChange";
+import SearchBar from "@/components/UI/SearchBar";
 
 function Pokedex() {
 	const [currentGen, setCurrentGen] = useState(0);
+	const [search, setSearch] = useState("");
 	const [sectionHeight, setSectionHeight] = useState("100px");
+
 
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["pokemon"],
@@ -36,6 +39,7 @@ function Pokedex() {
 
 	const scrollToRef = (ref: RefObject<HTMLElement>) => {
 		if (ref?.current) {
+			console.log(ref?.current.scrollTop)
 			ref.current.scroll({
 				top: 0,
 				behavior: "smooth"
@@ -69,25 +73,23 @@ function Pokedex() {
                     Array(GEN_COUNTS.length - 1)
                         .fill(<li></li>)
                         .map((item, i) => (
-                            <button className="w-full px-4 py-2 text-left" onClick={() => setCurrentGen(i + 1)}>
+                            <button key={i} className="w-full px-4 py-2 text-left" onClick={() => setCurrentGen(i + 1)}>
 															Gen {i+1}
 														</button>
                         ))]} 
             />
             <div className="h-[24px] w-[1px] bg-neutral-500 "/>
-						<label className="input flex items-center gap-2">
-  						<input type="text" className="duration-0 p-1 focus:outline-none border border-stone-300 dark:border-stone-600 focus:border-indigo-400 dark:focus:border-indigo-400" placeholder="Search" />
-  						<button className="duration-0 bg-indigo-400 hover:bg-indigo-500">
-								<i className="fa fa-search p-[9px] text-white"/>
-							</button>
-						</label>
+						<SearchBar setSearchFn={setSearch}/>
         </header>
-				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-2 gap-y-12 p-4 bg-stone-800 sm:gap-x-6 ${isLoading && "justify-center items-center"}`} style={{height: sectionHeight}} ref={listRef}>
+				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-2 gap-y-12 px-4 py-8 bg-stone-800 sm:gap-x-6 ${isLoading && "justify-center items-center"}`} style={{height: sectionHeight}} ref={listRef}>
 					{
 						isLoading ? 
 						<Spinner/>
 						:
-						data?.slice(currentGenStart, currentGenEnd).map(item => <PokemonCard pokemonData={item}/>)
+						data?.
+							slice(currentGenStart, currentGenEnd)
+							.filter(item => item.name.includes(search.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()) || search.replace(/\D/g,'') && item.url.split("/").slice(-2, -1)[0].includes(search.replace(/\D/g,'')))
+							.map(item => <PokemonCard key={item.name} pokemonData={item}/>)
 					}			
 				</section>
     </main>

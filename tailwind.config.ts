@@ -32,7 +32,7 @@ const config: Config = {
             transform: "translateY(0px)"
           },
           "100%": {
-            transform: "translateY(-12px)"
+            transform: "translateY(-12px) scale(1.08)"
           }
         }
       }
