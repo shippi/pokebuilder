@@ -16,7 +16,7 @@ function Pokedex() {
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["pokemon"],
 		queryFn: async() => {
-			const { data } = await axios.get(process.env.NEXT_PUBLIC_POKEMON_API + "pokemon?limit=" + GEN_COUNTS[0]);
+			const { data } = await axios.get(process.env.NEXT_PUBLIC_POKEMON_API + "pokemon?limit=" + GEN_COUNTS.reduce((a, b) => a + b, 0));
 			return data.results as PokemonData[];
 		}
 	});
@@ -39,6 +39,7 @@ function Pokedex() {
 	}, [])
 
   return (
+		
     <main className="flex flex-col items-center w-[95vw] h-screen max-w-4xl min-w-[324px]">
         <header className="flex flex-wrap w-full items-center h-18 max-h-16 gap-6 p-4 rounded-t-xl bg-stone-200 dark:bg-stone-900">
             <h1 className="font-black text-3xl text-stone-700 dark:text-white">

@@ -14,7 +14,7 @@ function PokemonCard({ pokemonData } : Props) {
 		queryKey: [pokemonData.name],
 		queryFn: async() => {
 			const { data } = await axios.get(process.env.NEXT_PUBLIC_POKEMON_API + `pokemon/${pokemonData.name}`);
-			return data;
+			return { types: data.types, id: data.id };
 		}
 	});
 
@@ -23,7 +23,7 @@ function PokemonCard({ pokemonData } : Props) {
 			{
         !isLoading &&
         <>
-          <img className="h-20 w-20" src={`${process.env.NEXT_PUBLIC_IMG_SRC}/${data?.id}.png`}/>
+          <img loading="lazy" className="h-20 w-20" src={`${process.env.NEXT_PUBLIC_IMG_SRC}/${data?.id}.png`}/>
           <div className="w-full h-[1px] bg-stone-400"/>
           <div className="flex justify-between w-full text-sm">
             {capitalizeFirstLetter(pokemonData.name)}
@@ -33,7 +33,7 @@ function PokemonCard({ pokemonData } : Props) {
           {
             data?.types.map((item: any) => {
               const type = item.type.name;
-              return <div className={`type ${type} w-[26px] rounded-full`}><img src={`/types_icons/${type}.svg`}/></div>
+              return <div className={`type ${type} w-[26px] rounded-full`}><img loading="lazy" src={`/types_icons/${type}.svg`}/></div>
             })
           }
           </div>
