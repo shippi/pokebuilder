@@ -1,5 +1,6 @@
 'use client'
 
+import useOnKeyPress from "@/hooks/useOnKeyPress";
 import { useState } from "react";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 function SearchBar({ setSearchFn }: Props) {
   const [search, setSearch] = useState("");
 
+  useOnKeyPress(["Enter"], () => setSearchFn(search));
+  
   return (
   	<label className="input flex items-center gap-2">
       <input 

@@ -58,7 +58,6 @@ function Pokedex() {
 	}, [currentGen]);
 
   return (
-		
     <main className="flex flex-col items-center w-[95vw] h-screen max-w-4xl min-w-[324px]">
         <header className="flex flex-wrap w-full items-center h-18 max-h-16 gap-6 p-4 rounded-t-xl bg-stone-200 dark:bg-stone-900">
             <h1 className="font-black text-3xl text-stone-700 dark:text-white">
@@ -81,7 +80,7 @@ function Pokedex() {
             <div className="h-[24px] w-[1px] bg-neutral-500 "/>
 						<SearchBar setSearchFn={setSearch}/>
         </header>
-				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-2 gap-y-12 px-4 py-8 bg-stone-800 sm:gap-x-6 ${isLoading && "justify-center items-center"}`} style={{height: sectionHeight}} ref={listRef}>
+				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-2 gap-y-12 px-4 py-8 bg-stone-800 sm:gap-x-6 ${isLoading && "justify-center items-center"}`} style={{maxHeight: sectionHeight}} ref={listRef}>
 					{
 						isLoading ? 
 						<Spinner/>
