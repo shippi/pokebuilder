@@ -1,7 +1,7 @@
 'use client'
 
 import { PokemonData } from "@/helpers/types"
-import { capitalizeFirstLetter } from "@/helpers/utils";
+import { capitalizeString } from "@/helpers/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
@@ -14,7 +14,7 @@ function PokemonCard({ pokemonData } : Props) {
 		queryKey: [pokemonData.name],
 		queryFn: async() => {
 			const { data } = await axios.get(process.env.NEXT_PUBLIC_POKEMON_API + `pokemon/${pokemonData.name}`);
-			return { types: data.types, id: data.id };
+			return { name: data.species.name, types: data.types, id: data.id };
 		}
 	});
 
@@ -26,7 +26,7 @@ function PokemonCard({ pokemonData } : Props) {
           <img loading="lazy" className="h-20 w-20" src={`${process.env.NEXT_PUBLIC_IMG_SRC}/${data?.id}.png`}/>
           <div className="w-full h-[1px] bg-stone-400"/>
           <div className="flex justify-between w-full text-sm">
-            {capitalizeFirstLetter(pokemonData.name)}
+            {capitalizeString(data?.name)}
             <span className="text-stone-400">{`#${data?.id}`}</span>
           </div>
           <div className="flex justify-center gap-2 w-full mt-1">   
