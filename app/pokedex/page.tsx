@@ -39,7 +39,6 @@ function Pokedex() {
 
 	const scrollToRef = (ref: RefObject<HTMLElement>) => {
 		if (ref?.current) {
-			console.log(ref?.current.scrollTop)
 			ref.current.scroll({
 				top: 0,
 				behavior: "smooth"
