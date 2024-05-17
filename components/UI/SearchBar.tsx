@@ -17,7 +17,7 @@ function SearchBar({ setSearchFn }: Props) {
   	<label className="input flex items-center gap-2">
       <input 
         type="text" 
-        className="duration-0 p-1 focus:outline-none border border-stone-300 dark:border-stone-600 focus:border-indigo-400 dark:focus:border-indigo-400" 
+        className="duration-0 p-1 focus:outline-none border border-stone-400 dark:border-stone-600 focus:border-indigo-400 dark:focus:border-indigo-400" 
         placeholder="Search"
         onChange={e => setSearch(e.target.value)} 
         ref={searchRef}

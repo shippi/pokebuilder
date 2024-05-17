@@ -58,14 +58,14 @@ function Pokedex() {
 
   return (
     <main className="flex flex-col items-center w-[95vw] h-screen max-w-4xl min-w-[324px]">
-        <header className="flex flex-wrap w-full items-center h-18 max-h-16 gap-6 p-4 rounded-t-xl bg-stone-200 dark:bg-stone-900">
+        <header className="flex flex-wrap w-full items-center h-18 max-h-16 gap-6 p-4 rounded-t-xl bg-stone-300 dark:bg-stone-900">
             <h1 className="font-black text-3xl text-stone-700 dark:text-white">
                 Pokédex
             </h1>
             <div className="h-[24px] w-[1px] bg-neutral-500 "/>
             <Dropdown 
                 className="w-[110px]"
-								selectedClassName="justify-between hover:bg-stone-200 dark:hover:bg-stone-900 dark:hover:text-indigo-300 hover:text-indigo-700"
+								selectedClassName="justify-between hover:bg-transparent hover:text-indigo-700 dark:hover:bg-transparent dark:hover:text-indigo-300 "
                 selected={[currentGenText]} 
                 listItems = {[<button onClick={() => setCurrentGen(0)} className="w-full px-4 py-2 text-left">All Gens</button>, ...
                     Array(GEN_COUNTS.length - 1)
@@ -79,7 +79,7 @@ function Pokedex() {
             <div className="h-[24px] w-[1px] bg-neutral-500 "/>
 						<SearchBar setSearchFn={setSearch}/>
         </header>
-				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-2 gap-y-12 px-4 py-8 bg-stone-800 sm:gap-x-6 ${isLoading && "justify-center items-center"}`} style={{maxHeight: sectionHeight}} ref={listRef}>
+				<section className={`flex flex-wrap overflow-scroll justify-around w-full gap-x-4 gap-y-12 px-8 py-8 bg-neutral-200 dark:bg-stone-800 ${isLoading && "justify-center items-center"}`} style={{maxHeight: sectionHeight}} ref={listRef}>
 					{
 						isLoading ? 
 						<Spinner/>

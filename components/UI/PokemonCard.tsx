@@ -19,13 +19,13 @@ function PokemonCard({ pokemonData } : Props) {
 	});
 
   return (
-    <div className="flex flex-col gap-2 items-center justify-center rounded-md p-4 h-fit min-h-32 min-w-36 w-[20%] bg-gradient-to-b from-stone-600 to-stone-00 hover:cursor-pointer hover:animate-cardHover dark:hover:bg-stone-600" style={{animationFillMode: "forwards"}}>
+    <div className="flex flex-col grow gap-2 items-center justify-center rounded-md p-4 h-fit min-h-32 min-w-36 max-w-52 w-[20%] bg-gradient-to-b from-stone-300 to-stone-00 hover:bg-stone-300 dark:from-stone-600 hover:cursor-pointer hover:animate-cardHover dark:hover:bg-stone-600" style={{animationFillMode: "forwards"}}>
 			{
         !isLoading &&
         <>
           <img loading="lazy" className="h-20 w-20" src={`${process.env.NEXT_PUBLIC_IMG_SRC}/${data?.id}.png`}/>
           <div className="w-full h-[1px] bg-stone-400"/>
-          <div className="flex justify-between w-full text-sm">
+          <div className="flex justify-between w-full text-sm text-stone-700 dark:text-white">
             {capitalizeString(data?.name)}
             <span className="text-stone-400">{`#${data?.id}`}</span>
           </div>
