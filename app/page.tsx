@@ -40,10 +40,6 @@ export default function Home() {
               </div>
             </div>
             <div className="h-[1px] w-[93vw] my-12 bg-neutral-300"/>
-            <div className="flex flex-col gap-4 text-white lg:text-stone-700 dark:text-white">
-              <h2 className="text font-medium">Created by: https://github.com/shippi</h2>
-              <h2 className="text font-medium">Lucario model: https://github.com/RandomTBush</h2>
-            </div>
           </div>
         </main>
         </>

@@ -54,7 +54,7 @@ function Pokedex() {
 
 	useEffect(() => {
 		scrollToRef(listRef);
-	}, [currentGen]);
+	}, [currentGen, search]);
 
   return (
     <main className="flex flex-col items-center w-[95vw] h-screen max-w-4xl min-w-[324px]">
@@ -65,8 +65,8 @@ function Pokedex() {
             
 			<div className="flex flex-wrap  items-center gap-x-6 gap-y-3">
 				<Dropdown 
-					className="w-[110px]"
-					selectedClassName="justify-between hover:bg-transparent hover:text-indigo-700 dark:hover:bg-transparent dark:hover:text-indigo-300 "
+					className="w-[100px]"
+					selectedClassName="justify-between px-2 hover:bg-transparent hover:text-indigo-700 dark:hover:bg-transparent dark:hover:text-indigo-300 "
 					selected={[currentGenText]} 
 					listItems = {[<button onClick={() => setCurrentGen(0)} className="w-full px-4 py-2 text-left">All Gens</button>, ...
 						Array(GEN_COUNTS.length - 1)
