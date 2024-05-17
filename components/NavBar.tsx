@@ -22,6 +22,7 @@ function NavBar() {
       <div className="flex items-center h-full ml-auto">
         <div className="h-[24px] w-[1px] mx-2 bg-neutral-200 "/>
         <Dropdown 
+          className="w-[70px]"
           listItemClassName="justify-center text-lg"
           selected={[
             resolvedTheme == "dark" && mounted ? <i key="selected" className="bi bi-moon text-xl"/> : mounted ? <i key="selected" className="bi bi-sun text-xl"/> : <i key="selected" className="w-5 h-7"/>

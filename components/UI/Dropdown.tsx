@@ -18,7 +18,7 @@ function Dropdown({ className, listItemClassName, selectedClassName, selected, l
         {selected}
         <i className={`bi bi-caret-${dropdownOpen ? "up" : "down"}-fill text-xs text-stone-700 dark:text-white`}/>
       </button>
-      <div id="dropdown" className={(dropdownOpen ? "" : "hidden ") + "w-full z-10 font-normal bg-white rounded-lg w-[100px] drop-shadow-md dark:bg-stone-900 dark:border dark:border-stone-700 " + className}>        
+      <div id="dropdown" className={(dropdownOpen ? "" : "hidden ") + "absolute translate-y-12 z-10 font-normal bg-white rounded-lg w-[100px] drop-shadow-md dark:bg-stone-900 dark:border dark:border-stone-700 " + className}>        
         <ul className="py-2 text-sm text-gray-700 dark:text-white" onClick={() => setDropdownOpen(false)}>
           {
             listItems.map((item, i) => (
