@@ -7,14 +7,12 @@ import axios from "axios";
 import Dropdown from "@/components/UI/Dropdown"
 import Spinner from "@/components/UI/Spinner";
 import PokemonCard from "@/components/UI/PokemonCard";
-import useWindowSizeChange from "@/hooks/useWindowSizeChange";
 import SearchBar from "@/components/UI/SearchBar";
+import useCalculateSectionHeight from "@/hooks/usCalculateSectionHeight";
 
 function Pokedex() {
 	const [currentGen, setCurrentGen] = useState(0);
 	const [search, setSearch] = useState("");
-	const [sectionHeight, setSectionHeight] = useState("100px");
-
 
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ["pokemon"],
@@ -24,18 +22,12 @@ function Pokedex() {
 		}
 	});
 
+	const sectionHeight = useCalculateSectionHeight();
 	const listRef = useRef<HTMLElement>(null);
 
 	const currentGenText = currentGen == 0 ? "All Gens" : "Gen " + currentGen
 	const currentGenStart = [...GEN_COUNTS].slice(0, currentGen).reduce((a, b) => a + b, 0);
 	const currentGenEnd = currentGenStart + GEN_COUNTS[currentGen] || GEN_COUNTS.reduce((a, b) => a + b, 0);
-
-	const calculateSectionHeight = () => {
-		const bottom = document.getElementsByTagName("html")[0].getBoundingClientRect().bottom;
-		const top = document.getElementsByTagName("section")[0].getBoundingClientRect().top;
-		console.log(`${bottom-top}px`)
-		return `${bottom-top}px`;
-	}
 
 	const scrollToRef = (ref: RefObject<HTMLElement>) => {
 		if (ref?.current) {
@@ -45,12 +37,6 @@ function Pokedex() {
 			})
 		}
 	}
-
-	useWindowSizeChange(() => {	setSectionHeight(calculateSectionHeight()) })
-
-	useEffect(() => {
-		setSectionHeight(calculateSectionHeight());
-	}, []);
 
 	useEffect(() => {
 		scrollToRef(listRef);

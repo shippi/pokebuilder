@@ -18,7 +18,7 @@ function HamburgerMenu({ closeFn } : Props) {
 					</button>
 				</li>
 				<li className="py-3">
-					<Link href="/pokedex" className="hover:text-stone-500 dark:hover:text-stone-400" onClick={() => closeFn()}>Pokedex</Link>
+					<Link href="/pokemon" className="hover:text-stone-500 dark:hover:text-stone-400" onClick={() => closeFn()}>Pokedex</Link>
 				</li>
 				<li className="py-3">
 					<Link href="/planner" className="hover:text-stone-500 dark:hover:text-stone-400" onClick={() => closeFn()}>Team Builder</Link>
