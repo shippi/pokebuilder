@@ -9,7 +9,7 @@ function PokedexData({ data, speciesData } : Props) {
   return (
     <div>
       <h1 className="text-2xl font-bold">Pokédex Data</h1>
-      <table>
+      <table className="border-separate border-spacing-2 ml-[-8px]">
         <tbody className="text-left">
           <tr>
             <th>Typing</th>

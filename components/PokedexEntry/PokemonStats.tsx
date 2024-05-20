@@ -17,7 +17,7 @@ function PokemonStats({ stats } : Props) {
             {
               stats.map((item, i) => (
                 <tr key={item.stat.name}>
-                  <th className="w-1/5">{capitalizeString(item.stat.name == "hp" ? "HP" : item.stat.name)}</th>
+                  <th className="w-[128px] text-sm sm:text-base sm:w-[192px]">{capitalizeString(item.stat.name == "hp" ? "HP" : item.stat.name)}</th>
                   <td className="pr-10 w-1/12">{item.base_stat}</td>
                   <td>
                     <div className={`h-4 bg-white`} style={{width: `${((item.base_stat / MAX) * 100).toFixed(0)}%`}}/>
