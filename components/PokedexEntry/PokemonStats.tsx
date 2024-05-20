@@ -5,7 +5,7 @@ interface Props {
     stats: PokemonStat[]
 }
 
-const MAX = 190;
+const MAX = 255;
 
 function PokemonStats({ stats } : Props) {
   return (

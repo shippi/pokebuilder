@@ -16,7 +16,7 @@ function PokedexData({ data, speciesData } : Props) {
             <td className="flex gap-x-2 h-[24px]">
               {
                 data.types.map((type: any) => (
-                  <div className={`${type.type.name} w-[64px] text-sm text-center`}>{capitalizeString(type.type.name)}</div>
+                  <div key={type.type.name} className={`${type.type.name} w-[64px] text-sm text-center`}>{capitalizeString(type.type.name)}</div>
                 ))
               }
             </td>
@@ -37,8 +37,8 @@ function PokedexData({ data, speciesData } : Props) {
             <th>Abilities</th>
             <td>
               {
-                data.abilities.map((ability: any) => (
-                  <div className={`${ability.is_hidden ? "text-sm" : "text-base"}`}>
+                data.abilities.map((ability: any, i: number) => (
+                  <div key={i} className={`${ability.is_hidden ? "text-sm" : "text-base"}`}>
                     {ability.slot && !ability.is_hidden && `${ability.slot}. `}
                     {capitalizeString(ability.ability.name)}
                     {ability.is_hidden && " (hidden ability)"}
