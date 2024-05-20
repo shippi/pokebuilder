@@ -15,7 +15,12 @@ function TypeTable({ typing, startIndex, endIndex } : Props) {
 				<tr>
 				{
 					POKEMON_TYPES.slice(startIndex, endIndex).map(type => (
-						<th key={type} className={`${type} w-16 min-w-10 text-clip overflow-hidden`}>{capitalizeString(type)}</th>
+						<th 
+							key={type} 
+							className={`${type} w-16 min-w-10 text-clip text-white overflow-hidden`}
+						>
+							{capitalizeString(type)}
+						</th>
 					))
 				}
 				</tr>
@@ -27,7 +32,7 @@ function TypeTable({ typing, startIndex, endIndex } : Props) {
 							const finalVal = val2 ? val * val2 : val
 
 							return (
-								<td key={type} className="text-center bg-stone-600">
+								<td key={type} className="text-center bg-stone-200 dark:bg-stone-600">
 									{ finalVal != 1 && (finalVal == 0.25 ? "1/4" : finalVal == 0.5 ? "1/2" : finalVal) }
 								</td>
 							)

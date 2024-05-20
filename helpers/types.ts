@@ -19,3 +19,8 @@ export interface PokemonType {
     url: string
   }
 }
+
+export interface EvolutionRequirement {
+  trigger: string
+  value: string | number
+}
