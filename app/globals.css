@@ -84,3 +84,31 @@
 .water {
 	background: #539DDF;
 }
+
+.horrible {
+	background: #dc2626;
+}
+
+.bad {
+	background: #f43f5e;
+}
+
+.poor {
+	background: #f97316;
+}
+
+.below-avg {
+	background: #facc15;
+}
+
+.above-avg {
+	background: #84cc16;
+}
+
+.good {
+	background: #a3e635;
+}
+
+.very-good {
+	background: #06b6d4;
+}

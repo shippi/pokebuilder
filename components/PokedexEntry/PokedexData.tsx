@@ -1,3 +1,4 @@
+import { Genus } from "@/helpers/types";
 import { capitalizeString } from "@/helpers/utils";
 
 interface Props {
@@ -28,7 +29,7 @@ function PokedexData({ data, speciesData } : Props) {
           </tr>
           <tr>
             <th className="text-stone-400 font-semibold">Category</th>
-            <td>{speciesData.genera[7].genus}</td>
+            <td>{getGenus(speciesData.genera)}</td>
           </tr>
           <tr>
             <th className="text-stone-400 font-semibold">Height</th>
@@ -56,6 +57,13 @@ function PokedexData({ data, speciesData } : Props) {
       </table>
     </div>
   )
+}
+
+function getGenus(data: Genus[]) {
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].language.name === "en") return data[i].genus;
+  }
+  return "";
 }
 
 export default PokedexData

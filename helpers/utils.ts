@@ -1,4 +1,5 @@
 export function capitalizeString(string: string) {
+    if (!string) return "";
     const words = string.split("-");
 
     return words.map((word) => { 

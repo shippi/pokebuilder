@@ -23,13 +23,14 @@ export const TYPE_CHART = {
 		fairy: 1
   },
 	fire: {
-    normal: 1,
+    	normal: 1,
 		fire: 0.5,
 		water: 2,
 		electric: 1,
 		grass: 0.5,
 		ice: 0.5,
 		fighting: 2,
+		poison: 1,
 		ground: 2,
 		flying: 1,
 		psychic: 1,
@@ -42,7 +43,7 @@ export const TYPE_CHART = {
 		fairy: 0.5
 	},
 	water: {
-    normal: 1,
+    	normal: 1,
 		fire: 0.5,
 		water: 0.5,
 		electric: 2,

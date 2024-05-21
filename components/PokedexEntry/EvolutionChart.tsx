@@ -17,36 +17,38 @@ function EvolutionChart({ speciesData } : Props) {
 	});
   
   const evolutionChain = formatEvolutionChain(data?.evolves_to);
-
+  console.log(evolutionChain)
   return (
     <div className="w-full">
       <h1 className="text-2xl font-bold">Evolutions</h1>
       <div className="w-full h-[1px] bg-stone-500 mt-2 mb-6"/>
         {
-          data && 
+          (data && evolutionChain.length > 0) ? 
           <div className="flex gap-x-4 items-center w-full overflow-x-scroll text-sm">
-          <div className="flex flex-col items-center gap-y-2 p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
+            <div className="flex flex-col items-center gap-y-2 p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
+              {
+                <>
+                <div className="h-[20px]"/>
+                <img 
+                  className="min-w-20 w-20"
+                  src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + data?.species.url.split("/").slice(-2)[0] + ".png"}`}
+                />
+                <span className="font-semibold">{ capitalizeString(data?.species.name) }</span>
+                </>
+              }
+            </div>
             {
-              <>
-              <div className="h-[20px]"/>
-              <img 
-                className="min-w-20 w-20"
-                src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + data?.species.url.split("/").slice(-2)[0] + ".png"}`}
-              />
-              <span className="font-semibold">{ capitalizeString(data?.species.name) }</span>
-              </>
+              evolutionChain.map((item: any) => {
+                return (
+                  <>
+                  <span className="text-4xl">⟶</span>
+                  { EvolutionStage(item) }
+                  </>
+              )})
             }
           </div>
-          {
-            evolutionChain.map((item: any) => {
-              return (
-                <>
-                <span className="text-4xl">⟶</span>
-                {EvolutionStage(item)}
-                </>
-            )})
-          }
-        </div>
+          :
+          <>This Pokémon does not evolve.</>
         }
       </div>
   )
@@ -61,17 +63,17 @@ function formatEvolutionChain(data: any) {
     data.forEach((details: any) => {
       details = Object.entries(details);
       details.slice(0, -2).forEach((element: string[]) => {
-        
         if (element[1] && !invalidTriggers.includes(element[0])) {
           if (Object.entries(element[1]).length > 1) element[1] = Object.entries(element[1])[0][1];
           requirements.push({
             trigger: element[0],
             value: element[1]
           })
-          invalidTriggers.push(element[0])
+          invalidTriggers.push(element[0]);       
         }
-      })
+      });
 
+      if (details[16][1].name == "trade") requirements.push({trigger: "trade", value: ""})
     });
 
     return requirements;
@@ -114,7 +116,7 @@ function EvolutionStage(children: any[]) {
                   <li className="py-[2px] text-xs">
                     <span className="font-bold">
                     {
-                      `${mapTrigger(requirement.trigger)}: `
+                      `${mapTrigger(requirement.trigger)}${requirement.trigger != "trade" ? ": " : ""}`
                     }
                     </span>
                     {
@@ -153,6 +155,8 @@ function mapTrigger(trigger: string) {
       return "Held Item"
     case "gender":
       return "Gender"
+    case "trade":
+      return "Trade"
     default: 
       return trigger
   }

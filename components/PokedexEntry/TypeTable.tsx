@@ -27,6 +27,7 @@ function TypeTable({ typing, startIndex, endIndex } : Props) {
 				<tr>
 					{
 						POKEMON_TYPES.slice(startIndex, endIndex).map((type, i) => {
+
 							const val = Object.entries(TYPE_CHART[typing[0].type.name as keyof typeof TYPE_CHART]).slice(startIndex, endIndex)[i][1];
 							const val2 = typing.length > 1 ? Object.entries(TYPE_CHART[typing[1].type.name as keyof typeof TYPE_CHART]).slice(startIndex, endIndex)[i][1] : undefined;
 							const finalVal = val2 ? val * val2 : val

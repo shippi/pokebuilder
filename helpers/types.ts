@@ -24,3 +24,11 @@ export interface EvolutionRequirement {
   trigger: string
   value: string | number
 }
+
+export interface Genus {
+  genus: string,
+  language: {
+    name: string,
+    url: string
+  }
+}
