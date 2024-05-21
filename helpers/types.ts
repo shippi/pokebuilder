@@ -39,6 +39,7 @@ export interface AbilityEffect {
   effect_entries: {
     effect: string
     language: Language
+    short_effect: string
   }[]
 }
 
