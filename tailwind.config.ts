@@ -9,7 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       animation: { 
-        fadeIn: 'fadeIn 1.2s ease-in-out'
+        fadeIn: 'fadeIn 1.2s ease-in-out',
+        menuSlide: 'menuSlide 1s cubic-bezier(0,1,1,1)',
+        cardHover: 'hover 0.75s cubic-bezier(0,1,1,1)'
       },
       keyframes: {
         fadeIn: {
@@ -24,6 +26,24 @@ const config: Config = {
           "100%": {
             opacity: "1",
             transform: "translateY(0px)"
+          }
+        },
+        menuSlide: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(-20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)"
+          }
+        },
+        hover: {
+          "0%": {
+            transform: "translateY(0px)"
+          },
+          "100%": {
+            transform: "translateY(-12px) scale(1.08)"
           }
         }
       }
