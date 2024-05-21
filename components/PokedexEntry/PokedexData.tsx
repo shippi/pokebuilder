@@ -1,5 +1,6 @@
 import { Ability, Genus } from "@/helpers/types";
 import { capitalizeString } from "@/helpers/utils";
+import AbilityDescription from "../UI/AbilityDescription";
 
 interface Props {
   data: any;
@@ -44,16 +45,18 @@ function PokedexData({ data, speciesData } : Props) {
             <td>
               {
                 filterAbilities(data.abilities).map((ability: Ability, i: number) => (
-                  <div key={i} className={`${ability.is_hidden && "text-xs"} pb-1`}>
+                  <div key={i} className={`${ability.is_hidden ? "text-xs " : ""}pb-1 group relative`}>
                     {ability.slot && !ability.is_hidden && `${ability.slot}. `}
-                    <a 
-                      href={process.env.NEXT_PUBLIC_ABILITY_LINK + ability.ability.name} 
-                      target="_blank"
-                      className="text-blue-600 hover:underline dark:text-blue-300"
+                    <span 
+                      className="text-blue-600 group-hover:underline dark:text-blue-300"
                     >
                       {capitalizeString(ability.ability.name)}
-                    </a>
+                    </span>
                     {ability.is_hidden && " (hidden ability)"}
+                    <AbilityDescription 
+                      className="absolute invisible group-hover:visible text-xs bg-stone-200 dark:bg-stone-900 p-3 border-b-4 border-stone-500 mt-1 z-10 rounded-xl drop-shadow-sm" 
+                      ability={ability}
+                    />
                   </div>
                 ))
               }

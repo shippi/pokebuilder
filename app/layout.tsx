@@ -6,7 +6,7 @@ import { ThemeProvider } from "next-themes";
 import TanstackProvider from "@/context/TanstackProvider";
 
 export const metadata: Metadata = {
-  title: "Pokébuilder",
+  title: "PokéBuilder",
   description: "",
 };
 

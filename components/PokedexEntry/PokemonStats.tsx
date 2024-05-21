@@ -25,6 +25,12 @@ function PokemonStats({ stats } : Props) {
                 </tr>
               ))
             }
+            <tr>
+              <th>Total</th>
+              <td className="font-bold">
+                {stats.reduce((partialSum, a) => partialSum + a.base_stat, 0)}
+              </td>
+            </tr>
           </tbody>
         </table>
     </div>

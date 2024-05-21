@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import PokedexData from "@/components/PokedexEntry/PokedexData";
 import TypeDefenses from "@/components/PokedexEntry/TypeDefenses";
+import { useEffect } from "react";
 
 interface Props {
   params: {
@@ -34,6 +35,9 @@ function PokemonInfo({params: {id}}: Props) {
 
   const sectionHeight = useCalculateSectionHeight();
 
+  useEffect(() => {
+    if (data) document.title = `${capitalizeString(data.name)} | PokéBuilder`
+  }, [data])
   return (
       <main className="flex flex-col items-center w-[95vw] h-screen max-w-5xl min-w-[324px]">
         <header className="flex flex-wrap w-full items-center h-18 gap-x-6 gap-y-2 p-4 rounded-t-xl bg-stone-200 dark:bg-stone-900">
@@ -56,7 +60,6 @@ function PokemonInfo({params: {id}}: Props) {
                 <PokedexData data={data} speciesData={species.data}/>
                 <TypeDefenses typing={data.types} abilities={data.abilities}/>
                 <PokemonStats stats={data.stats}/>
-                
                 <EvolutionChart speciesData={species.data}/>
               </>
             }

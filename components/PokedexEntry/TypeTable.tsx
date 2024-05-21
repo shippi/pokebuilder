@@ -34,7 +34,7 @@ function TypeTable({ typing, abilities, startIndex, endIndex } : Props) {
 							if (checkImmune(abilities, type, finalVal)) finalVal = 0;
 
 							return (
-								<td key={type} className="text-center bg-stone-200 dark:bg-stone-600">
+								<td key={type} className="text-center h-4 bg-stone-200 dark:bg-stone-600">
 									{ finalVal != 1 && (finalVal == 0.25 ? "1/4" : finalVal == 0.5 ? "1/2" : finalVal) }
 								</td>
 							)

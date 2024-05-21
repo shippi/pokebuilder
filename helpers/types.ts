@@ -25,12 +25,21 @@ export interface EvolutionRequirement {
   value: string | number
 }
 
+export interface Language {
+  name: string,
+  url: string
+}
+
 export interface Genus {
   genus: string,
-  language: {
-    name: string,
-    url: string
-  }
+  language: Language
+}
+
+export interface AbilityEffect {
+  effect_entries: {
+    effect: string
+    language: Language
+  }[]
 }
 
 export interface Ability {

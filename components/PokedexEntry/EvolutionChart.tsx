@@ -17,7 +17,7 @@ function EvolutionChart({ speciesData } : Props) {
 	});
   
   const evolutionChain = formatEvolutionChain(data?.evolves_to);
-  
+
   return (
     <div className="w-full">
       <h1 className="text-2xl font-bold">Evolutions</h1>
@@ -25,7 +25,7 @@ function EvolutionChart({ speciesData } : Props) {
         {
           (data && evolutionChain.length > 0) ? 
           <div className="flex gap-x-4 items-center w-full overflow-x-scroll text-sm">
-            <div className="flex flex-col items-center gap-y-2 p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
+            <div className="flex flex-col items-center gap-y-2 p-4 min-w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
               {
                 <>
                 <div className="h-[20px]"/>
@@ -33,7 +33,12 @@ function EvolutionChart({ speciesData } : Props) {
                   className="min-w-20 w-20"
                   src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + data?.species.url.split("/").slice(-2)[0] + ".png"}`}
                 />
-                <span className="font-semibold">{ capitalizeString(data?.species.name) }</span>
+                <a 
+                  href={`/pokemon/${data?.species.url.split("/").slice(-2)[0]}`} 
+                  className="font-semibold text-blue-600 hover:underline dark:text-blue-300"
+                >
+                  { capitalizeString(data?.species.name) }
+                </a>
                 </>
               }
             </div>
@@ -73,7 +78,7 @@ function formatEvolutionChain(data: any) {
         }
       });
 
-      if (details[16][1].name == "trade") requirements.push({trigger: "trade", value: ""})
+      if (requirements.length < 1 && details[16][1].name != "level-up") requirements.push({trigger: details[16][1].name, value: ""})
     });
 
     return requirements;
@@ -113,10 +118,10 @@ function EvolutionStage(children: any[]) {
               <ul className="h-10">
               {
                 item.requirements.map((requirement: any) => (
-                  <li className="py-[2px] text-xs">
+                  <li className="py-[2px] text-xs text-center">
                     <span className="font-bold">
                     {
-                      `${mapTrigger(requirement.trigger)}${requirement.trigger != "trade" ? ": " : ""}`
+                      mapTrigger(requirement.trigger)
                     }
                     </span>
                     {
@@ -131,7 +136,12 @@ function EvolutionStage(children: any[]) {
               className="max-w-20"
               src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + item.id + ".png"}`}
             />
-            <span className="font-semibold">{capitalizeString(item.species)}</span>
+            <a 
+              href={`/pokemon/${item.id}`} 
+              className="font-semibold text-blue-600 hover:underline dark:text-blue-300"
+            >
+              {capitalizeString(item.species)}
+            </a>
           </div>
         ))
       }
@@ -142,23 +152,27 @@ function EvolutionStage(children: any[]) {
 function mapTrigger(trigger: string) {
   switch (trigger) {
     case "min_level":
-      return "Level"
+      return "Level: "
     case "min_happiness":
-      return "Friendship"
+      return "Friendship: "
     case "time_of_day":
-      return "Time of Day"
+      return "Time of Day: "
     case "item":
-      return "Item"
+      return "Item: "
     case "known_move_type":
-      return "Move Type Learned"
+      return "Move Type Learned: "
     case "held_item":
-      return "Held Item"
+      return "Held Item: "
     case "gender":
-      return "Gender"
-    case "trade":
-      return "Trade"
+      return "Gender: "
+    case "shed":
+      return (
+        <>
+          Level: <span className="font-normal">20, empty spot in party, and Pokéball in bag</span>
+        </>
+      )
     default: 
-      return trigger
+      return capitalizeString(trigger)
   }
 }
 
@@ -168,7 +182,8 @@ function mapValue(value: string | number) {
   if (typeof value == 'number') return value
   if (value == "d") return "Daytime";
   if (value == "n") return "Nighttime";
-  
+  if (value == "f") return "Full Moon";
+
   return (capitalizeString(value))
 }
 
