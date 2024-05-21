@@ -24,7 +24,7 @@ function AbilityDescription({ className, ability } : Props) {
 
 function getEffect(data: AbilityEffect) {
   for (let i = 0; i < data.effect_entries.length; i++) {
-    if (data.effect_entries[i].language.name === "en") return data.effect_entries[i].effect
+    if (data.effect_entries[i].language.name === "en") return data.effect_entries[i].short_effect
   }
   return "";
 }
