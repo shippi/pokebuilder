@@ -54,7 +54,7 @@ function PokemonInfo({params: {id}}: Props) {
               <>
                 <img className="h-72" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
                 <PokedexData data={data} speciesData={species.data}/>
-                <TypeDefenses typing={data.types}/>
+                <TypeDefenses typing={data.types} abilities={data.abilities}/>
                 <PokemonStats stats={data.stats}/>
                 
                 <EvolutionChart speciesData={species.data}/>

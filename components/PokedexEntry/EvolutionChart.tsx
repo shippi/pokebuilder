@@ -17,7 +17,7 @@ function EvolutionChart({ speciesData } : Props) {
 	});
   
   const evolutionChain = formatEvolutionChain(data?.evolves_to);
-  console.log(evolutionChain)
+  
   return (
     <div className="w-full">
       <h1 className="text-2xl font-bold">Evolutions</h1>

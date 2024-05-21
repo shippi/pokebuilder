@@ -1,4 +1,4 @@
-import { Genus } from "@/helpers/types";
+import { Ability, Genus } from "@/helpers/types";
 import { capitalizeString } from "@/helpers/utils";
 
 interface Props {
@@ -43,10 +43,16 @@ function PokedexData({ data, speciesData } : Props) {
             <th className="text-stone-400 font-semibold">Abilities</th>
             <td>
               {
-                data.abilities.map((ability: any, i: number) => (
+                filterAbilities(data.abilities).map((ability: Ability, i: number) => (
                   <div key={i} className={`${ability.is_hidden && "text-xs"} pb-1`}>
                     {ability.slot && !ability.is_hidden && `${ability.slot}. `}
-                    {capitalizeString(ability.ability.name)}
+                    <a 
+                      href={process.env.NEXT_PUBLIC_ABILITY_LINK + ability.ability.name} 
+                      target="_blank"
+                      className="text-blue-600 hover:underline dark:text-blue-300"
+                    >
+                      {capitalizeString(ability.ability.name)}
+                    </a>
                     {ability.is_hidden && " (hidden ability)"}
                   </div>
                 ))
@@ -57,6 +63,20 @@ function PokedexData({ data, speciesData } : Props) {
       </table>
     </div>
   )
+}
+
+function filterAbilities(data: Ability[]) {
+  let abilities = [];
+  let invalid: string[] = [];
+  
+  for (let i = 0; i < data.length; i++) {
+    if (!invalid.includes(data[i].ability.name)) {
+      abilities.push(data[i]);
+      invalid.push(data[i].ability.name);
+    }
+  }
+
+  return abilities;
 }
 
 function getGenus(data: Genus[]) {
