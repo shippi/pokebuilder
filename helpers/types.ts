@@ -12,6 +12,11 @@ export interface PokemonStat {
     }
 }
 
+export interface EffortValue {
+  name: string,
+  amount: number
+}
+
 export interface PokemonType {
   slot: number,
   type: {
@@ -23,6 +28,12 @@ export interface PokemonType {
 export interface EvolutionRequirement {
   trigger: string
   value: string | number
+}
+
+export interface EvolutionStage {
+  id: string
+  requirements?: EvolutionRequirement[]
+  species: string
 }
 
 export interface Language {

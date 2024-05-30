@@ -1,7 +1,7 @@
-import { EvolutionRequirement } from "@/helpers/types";
-import { capitalizeString } from "@/helpers/utils";
+import { EvolutionRequirement, EvolutionStage } from "@/helpers/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import EvolutionCard from "./EvolutionCard";
 
 interface Props {
   speciesData: any
@@ -24,30 +24,14 @@ function EvolutionChart({ speciesData } : Props) {
       <div className="w-full h-[1px] bg-stone-500 mt-2 mb-6"/>
         {
           (data && evolutionChain.length > 0) ? 
-          <div className="flex gap-x-4 items-center w-full overflow-x-scroll text-sm">
-            <div className="flex flex-col items-center gap-y-2 p-4 min-w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
-              {
-                <>
-                <div className="h-[20px]"/>
-                <img 
-                  className="min-w-20 w-20"
-                  src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + data?.species.url.split("/").slice(-2)[0] + ".png"}`}
-                />
-                <a 
-                  href={`/pokemon/${data?.species.url.split("/").slice(-2)[0]}`} 
-                  className="font-semibold text-blue-600 hover:underline dark:text-blue-300"
-                >
-                  { capitalizeString(data?.species.name) }
-                </a>
-                </>
-              }
-            </div>
+          <div className="flex gap-x-4 py-8 items-center w-full overflow-x-scroll text-sm">
+            <EvolutionCard evolutionStage={{id: data.species.url.split("/").slice(-2)[0], species: data.species.name}} />
             {
               evolutionChain.map((item: any) => {
                 return (
                   <>
                   <span className="text-4xl">⟶</span>
-                  { EvolutionStage(item) }
+                  { EvolutionBranch(item) }
                   </>
               )})
             }
@@ -100,91 +84,25 @@ function formatEvolutionChain(data: any) {
       chain.push(stage);
     });
 
-    if (chain.length > 0) evolutionChain.push(chain);
+    if (chain.length > 0) evolutionChain.unshift(chain);
   }
 
   formatStage(data, evolutionChain);
 
-  return evolutionChain.reverse();
+  return evolutionChain;
 }
 
-function EvolutionStage(children: any[]) {
+function EvolutionBranch(children: EvolutionStage[]) {
   return (
-    <div className="flex flex-wrap flex-col max-h-[780px] justify-center items-center gap-x-6 gap-y-12 pb-8">
+    <div className="flex flex-wrap flex-col max-h-[780px] justify-center items-center gap-x-6 gap-y-12">
       {
         children.map(item => (
-          <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
-            {
-              <ul className="h-10">
-              {
-                item.requirements.map((requirement: any) => (
-                  <li className="py-[2px] text-xs text-center">
-                    <span className="font-bold">
-                    {
-                      mapTrigger(requirement.trigger)
-                    }
-                    </span>
-                    {
-                      mapValue(requirement.value)
-                    }
-                  </li>
-                ))
-              }
-              </ul>
-            }
-            <img 
-              className="max-w-20"
-              src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + item.id + ".png"}`}
-            />
-            <a 
-              href={`/pokemon/${item.id}`} 
-              className="font-semibold text-blue-600 hover:underline dark:text-blue-300"
-            >
-              {capitalizeString(item.species)}
-            </a>
-          </div>
+          <EvolutionCard key={item.id} evolutionStage={item}/>
         ))
       }
     </div>
   )
 }
 
-function mapTrigger(trigger: string) {
-  switch (trigger) {
-    case "min_level":
-      return "Level: "
-    case "min_happiness":
-      return "Friendship: "
-    case "time_of_day":
-      return "Time of Day: "
-    case "item":
-      return "Item: "
-    case "known_move_type":
-      return "Move Type Learned: "
-    case "held_item":
-      return "Held Item: "
-    case "gender":
-      return "Gender: "
-    case "shed":
-      return (
-        <>
-          Level: <span className="font-normal">20, empty spot in party, and Pokéball in bag</span>
-        </>
-      )
-    default: 
-      return capitalizeString(trigger)
-  }
-}
-
-function mapValue(value: string | number) {
-  if (value == '1') return "Female";
-  if (value == '2') return "Male";
-  if (typeof value == 'number') return value
-  if (value == "d") return "Daytime";
-  if (value == "n") return "Nighttime";
-  if (value == "f") return "Full Moon";
-
-  return (capitalizeString(value))
-}
 
 export default EvolutionChart

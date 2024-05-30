@@ -1,20 +1,21 @@
 import { Ability, Genus } from "@/helpers/types";
 import { capitalizeString } from "@/helpers/utils";
-import AbilityDescription from "../UI/AbilityDescription";
+import AbilityDescription from "./AbilityDescription";
 
 interface Props {
   data: any;
   speciesData: any;
+  className?: string
 }
 
-function PokedexData({ data, speciesData } : Props) {
+function PokedexData({ data, speciesData, className } : Props) {
   return (
-    <div>
+    <div className={className}>
       <h1 className="text-2xl font-bold">Pokédex Data</h1>
-      <table className="border-separate border-spacing-2 ml-[-8px] text-sm">
+      <table className="w-full border-separate border-spacing-2 ml-[-8px] text-sm">
         <tbody className="text-left">
           <tr>
-            <th className="text-stone-400 font-semibold">Typing</th>
+            <th className="w-20 text-stone-400 font-semibold">Typing</th>
             <td className="flex gap-x-2 h-[24px]">
               {
                 data.types.map((type: any) => (
