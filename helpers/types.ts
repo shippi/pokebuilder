@@ -25,6 +25,12 @@ export interface EvolutionRequirement {
   value: string | number
 }
 
+export interface EvolutionStage {
+  id: string
+  requirements?: EvolutionRequirement[]
+  species: string
+}
+
 export interface Language {
   name: string,
   url: string
