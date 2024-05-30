@@ -1,8 +1,7 @@
 import { EvolutionRequirement, EvolutionStage } from "@/helpers/types";
-import { capitalizeString } from "@/helpers/utils";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import EvolutionCard from "../UI/EvolutionCard";
+import EvolutionCard from "./EvolutionCard";
 
 interface Props {
   speciesData: any
@@ -25,7 +24,7 @@ function EvolutionChart({ speciesData } : Props) {
       <div className="w-full h-[1px] bg-stone-500 mt-2 mb-6"/>
         {
           (data && evolutionChain.length > 0) ? 
-          <div className="flex gap-x-4 items-center w-full overflow-x-scroll text-sm">
+          <div className="flex gap-x-4 py-8 items-center w-full overflow-x-scroll text-sm">
             <EvolutionCard evolutionStage={{id: data.species.url.split("/").slice(-2)[0], species: data.species.name}} />
             {
               evolutionChain.map((item: any) => {
@@ -95,7 +94,7 @@ function formatEvolutionChain(data: any) {
 
 function EvolutionBranch(children: EvolutionStage[]) {
   return (
-    <div className="flex flex-wrap flex-col max-h-[780px] justify-center items-center gap-x-6 gap-y-12 pb-8">
+    <div className="flex flex-wrap flex-col max-h-[780px] justify-center items-center gap-x-6 gap-y-12">
       {
         children.map(item => (
           <EvolutionCard key={item.id} evolutionStage={item}/>

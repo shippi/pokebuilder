@@ -8,7 +8,7 @@ interface Props {
 export default function EvolutionCard({ evolutionStage } : Props) {
   return (
     <a href={`/pokemon/${evolutionStage.id}`}>
-      <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900">
+      <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900 hover:animate-cardHover" style={{animationFillMode: "forwards"}}>
         {
           <ul className="h-10">
           {

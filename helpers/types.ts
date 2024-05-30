@@ -12,6 +12,11 @@ export interface PokemonStat {
     }
 }
 
+export interface EffortValue {
+  name: string,
+  amount: number
+}
+
 export interface PokemonType {
   slot: number,
   type: {

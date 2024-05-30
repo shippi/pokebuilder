@@ -1,6 +1,6 @@
 'use client'
 
-import EvolutionChart from "@/components/PokedexEntry/EvolutionChart";
+
 import PokemonStats from "@/components/PokedexEntry/PokemonStats";
 import { capitalizeString } from "@/helpers/utils";
 import useCalculateSectionHeight from "@/hooks/usCalculateSectionHeight";
@@ -9,6 +9,8 @@ import axios from "axios";
 import PokedexData from "@/components/PokedexEntry/PokedexData";
 import TypeDefenses from "@/components/PokedexEntry/TypeDefenses";
 import { useEffect } from "react";
+import EvolutionChart from "@/components/PokedexEntry/EvolutionChart";
+import TrainingData from "@/components/PokedexEntry/TrainingData";
 
 interface Props {
   params: {
@@ -56,8 +58,9 @@ function PokemonInfo({params: {id}}: Props) {
             {
               (!isLoading && !species.isLoading && data && species.data) &&
               <>
-                <img className="h-72" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
-                <PokedexData data={data} speciesData={species.data}/>
+                <img className="h-80" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
+                <PokedexData className="self-start grow" data={data} speciesData={species.data}/>
+                <TrainingData className="self-start grow" data={data} speciesData={species.data}/>
                 <TypeDefenses typing={data.types} abilities={data.abilities}/>
                 <PokemonStats stats={data.stats}/>
                 <EvolutionChart speciesData={species.data}/>
