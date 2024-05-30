@@ -54,13 +54,13 @@ function PokemonInfo({params: {id}}: Props) {
             { (!isLoading && data) ? `#${id.padStart(4, "0")}` : "#????"}
           </h2>
         </header>
-        <section className={`flex flex-wrap items-center justify-center overflow-scroll w-full gap-x-4 gap-y-12 px-8 py-8 bg-stone-100 dark:bg-stone-800 ${isLoading && "justify-center items-center"}`} style={{maxHeight: sectionHeight}}>
+        <section className={`flex flex-wrap items-center justify-center gap-x-8 overflow-scroll w-full gap-x-4 gap-y-12 px-8 py-8 bg-stone-100 dark:bg-stone-800 ${isLoading && "justify-center items-center"}`} style={{maxHeight: sectionHeight}}>
             {
               (!isLoading && !species.isLoading && data && species.data) &&
               <>
                 <img className="h-80" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
-                <PokedexData className="self-start grow" data={data} speciesData={species.data}/>
-                <TrainingData className="self-start grow" data={data} speciesData={species.data}/>
+                <PokedexData className="min-w-64 self-start grow" data={data} speciesData={species.data}/>
+                <TrainingData className="min-w-72 self-start justify-self-end grow" data={data} speciesData={species.data}/>
                 <TypeDefenses typing={data.types} abilities={data.abilities}/>
                 <PokemonStats stats={data.stats}/>
                 <EvolutionChart speciesData={species.data}/>

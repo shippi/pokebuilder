@@ -12,10 +12,10 @@ export default function TrainingData({ data, speciesData, className } : Props) {
   return (
     <div className={className}>
       <h1 className="text-2xl font-bold">Training</h1>
-      <table className="border-separate border-spacing-2 ml-[-8px] text-sm">
+      <table className="w-full border-separate border-spacing-2 ml-[-8px] text-sm">
         <tbody className="text-left">
           <tr>
-            <th className="text-stone-400 font-semibold">EV Yield</th>
+            <th className="w-32 text-stone-400 font-semibold">EV Yield</th>
             <td>
                { effortValues.join(", ") }
             </td>
@@ -47,10 +47,16 @@ function getEffortValues(stats: PokemonStat[]) {
   stats?.forEach(stat => {
     if (stat.effort) {
       effortValues.push({
-        name: stat.stat.name,
+        name: mapStatName(stat.stat.name),
         amount: stat.effort
       })
     }
   });
   return effortValues;
+}
+
+function mapStatName(stat: string) {
+  if (stat == "special-defense") return "Sp. Def";
+  if (stat == "special-attack") return "Sp. Atk";
+  return stat;
 }
