@@ -11,6 +11,7 @@ import TypeDefenses from "@/components/PokedexEntry/TypeDefenses";
 import { useEffect } from "react";
 import EvolutionChart from "@/components/PokedexEntry/EvolutionChart";
 import TrainingData from "@/components/PokedexEntry/TrainingData";
+import BreedingData from "@/components/PokedexEntry/BreedingData";
 
 interface Props {
   params: {
@@ -58,9 +59,12 @@ function PokemonInfo({params: {id}}: Props) {
             {
               (!isLoading && !species.isLoading && data && species.data) &&
               <>
-                <img className="h-80" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
-                <PokedexData className="min-w-64 self-start grow" data={data} speciesData={species.data}/>
-                <TrainingData className="min-w-72 self-start justify-self-end grow" data={data} speciesData={species.data}/>
+                <img className="h-72" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
+                <PokedexData className="min-w-[270px] self-start grow" data={data} speciesData={species.data}/>
+                <div className="flex flex-wrap w-60 gap-x-8 gap-y-4 justify-self-end grow">
+                  <TrainingData className="min-w-60" data={data} speciesData={species.data}/>
+                  <BreedingData className="min-w-60" speciesData={species.data}/>
+                </div>
                 <TypeDefenses typing={data.types} abilities={data.abilities}/>
                 <PokemonStats stats={data.stats}/>
                 <EvolutionChart speciesData={species.data}/>
