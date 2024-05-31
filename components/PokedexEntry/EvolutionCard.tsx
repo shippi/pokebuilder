@@ -20,7 +20,7 @@ export default function EvolutionCard({ evolutionStage } : Props) {
                 }
                 </span>
                 {
-                  mapValue(requirement.value)
+                  mapValue(requirement.value, requirement.trigger)
                 }
               </li>
             ))
@@ -62,18 +62,22 @@ function mapTrigger(trigger: string) {
           Level: <span className="font-normal">20, empty spot in party, and Pokéball in bag</span>
         </>
       )
+    case "relative_physical_stats":
+      return "";
     default: 
       return capitalizeString(trigger)
   }
 }
 
-function mapValue(value: string | number) {
-  if (value == '1') return "Female";
-  if (value == '2') return "Male";
-  if (typeof value == 'number') return value
+function mapValue(value: string | number, type?: string) {
+  if (value == 1 && type == "gender") return "Female";
+  if (value == 2 && type == "gender") return "Male";
+  if (value == -1 && type == "relative_physical_stats") return "Attack < Defense";
+  if (value == 1 && type == "relative_physical_stats") return "Attack > Defense";
   if (value == "d") return "Daytime";
   if (value == "n") return "Nighttime";
   if (value == "f") return "Full Moon";
+  if (typeof value == 'number') return value
 
   return (capitalizeString(value))
 }
