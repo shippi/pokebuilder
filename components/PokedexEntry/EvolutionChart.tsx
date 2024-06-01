@@ -58,7 +58,7 @@ function formatEvolutionChain(data: any) {
       
       let req: any = {};
       for (const detail of detailsEntries) {
-        if (Object.keys(req).length > 1 && detail[0] == "trigger") continue;
+        if (Object.keys(req).length > 0 && detail[0] == "trigger") continue;
         if (typeof detail[1] == "number" || typeof detail[1] == "string") {
           req[detail[0]] = detail[1];
         }
