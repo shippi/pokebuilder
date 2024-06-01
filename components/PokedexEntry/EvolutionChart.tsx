@@ -1,4 +1,4 @@
-import { EvolutionRequirement, EvolutionStage } from "@/helpers/types";
+import { EvolutionRequirement, EvolutionStage, Link } from "@/helpers/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import EvolutionCard from "./EvolutionCard";
@@ -26,6 +26,7 @@ function EvolutionChart({ speciesData } : Props) {
           (data && evolutionChain.length > 0) ? 
           <div className="flex gap-x-4 py-8 items-center w-full overflow-x-scroll text-sm">
             <EvolutionCard evolutionStage={{id: data.species.url.split("/").slice(-2)[0], species: data.species.name}} />
+            
             {
               evolutionChain.map((item: any) => {
                 return (
@@ -36,6 +37,7 @@ function EvolutionChart({ speciesData } : Props) {
               )})
             }
           </div>
+          
           :
           <>This Pokémon does not evolve.</>
         }
@@ -47,24 +49,26 @@ function formatEvolutionChain(data: any) {
   let evolutionChain: any[] = [];
   
   const formatRequirments = (data: any) => {
-    let requirements: EvolutionRequirement[] = [];
-    let invalidTriggers = ["location", "min_affection"];
-    data.forEach((details: any) => {
-      details = Object.entries(details);
-      details.slice(0, -2).forEach((element: string[]) => {
-        if (element[1] && !invalidTriggers.includes(element[0])) {
-          if (Object.entries(element[1]).length > 1) element[1] = Object.entries(element[1])[0][1];
-          requirements.push({
-            trigger: element[0],
-            value: element[1]
-          })
-          invalidTriggers.push(element[0]);       
+    let requirements: any[] = [];
+    let invalidTriggers = ["location", "trigger"];
+
+    for (const details of data) {
+      const detailsEntries = Object.entries(details).filter(value => !invalidTriggers.includes(value[0]) && value[1]);
+      if (detailsEntries.length < 1) continue;
+      
+      let req: any = {};
+      for (const detail of detailsEntries) {
+        
+        if (typeof detail[1] == "number" || typeof detail[1] == "string") {
+          req[detail[0]] = detail[1];
         }
-      });
-
-      if (requirements.length < 1 && details[16][1].name != "level-up") requirements.push({trigger: details[16][1].name, value: ""})
-    });
-
+        else {
+          req[detail[0]] = (detail[1] as Link).name;
+        }
+        
+      }
+      requirements.push(req)
+    }
     return requirements;
   }
 
