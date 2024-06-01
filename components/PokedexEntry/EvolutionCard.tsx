@@ -8,7 +8,6 @@ interface Props {
 
 export default function EvolutionCard({ evolutionStage, requirementsIndex } : Props) {
   const reqs = evolutionStage.requirements ? Object.entries(evolutionStage.requirements[requirementsIndex || 0]) : undefined;
-  console.log(reqs)
   return (
     <a href={`/pokemon/${evolutionStage.id}`}>
       <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900 hover:animate-cardHover" style={{animationFillMode: "forwards"}}>
@@ -61,12 +60,8 @@ function mapTrigger(trigger: string) {
       return "Held Item: "
     case "gender":
       return "Gender: "
-    case "shed":
-      return (
-        <>
-          Level: <span className="font-normal">20, empty spot in party, and Pokéball in bag</span>
-        </>
-      )
+    case "trigger":
+      return ""
     case "relative_physical_stats":
       return "";
     default: 
@@ -75,6 +70,12 @@ function mapTrigger(trigger: string) {
 }
 
 function mapValue(value: string | number, type?: string) {
+  if(value == "shed")
+    return (
+      <>
+        <span className="font-bold">Level: </span>20, empty spot in party, and Pokéball in bag
+      </>
+    )
   if (value == 1 && type == "gender") return "Female";
   if (value == 2 && type == "gender") return "Male";
   if (value == -1 && type == "relative_physical_stats") return "Attack < Defense";

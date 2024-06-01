@@ -17,7 +17,7 @@ function EvolutionChart({ speciesData } : Props) {
 	});
   
   const evolutionChain = formatEvolutionChain(data?.evolves_to);
-
+  console.log(evolutionChain)
   return (
     <div className="w-full">
       <h1 className="text-2xl font-bold">Evolutions</h1>
@@ -50,7 +50,7 @@ function formatEvolutionChain(data: any) {
   
   const formatRequirments = (data: any) => {
     let requirements: any[] = [];
-    let invalidTriggers = ["location", "trigger"];
+    let invalidTriggers = ["location"];
 
     for (const details of data) {
       const detailsEntries = Object.entries(details).filter(value => !invalidTriggers.includes(value[0]) && value[1]);
@@ -58,7 +58,7 @@ function formatEvolutionChain(data: any) {
       
       let req: any = {};
       for (const detail of detailsEntries) {
-        
+        if (Object.keys(req).length > 1 && detail[0] == "trigger") continue;
         if (typeof detail[1] == "number" || typeof detail[1] == "string") {
           req[detail[0]] = detail[1];
         }
