@@ -59,7 +59,7 @@ function PokemonInfo({params: {id}}: Props) {
             {
               (!isLoading && !species.isLoading && data && species.data) &&
               <>
-                <img className="h-72" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
+                <img className="h-72 w-72" src={`${process.env.NEXT_PUBLIC_OFFICIAL_SRC + id + ".png"}`}/>
                 <PokedexData className="min-w-[270px] self-start grow" data={data} speciesData={species.data}/>
                 <div className="flex flex-wrap w-60 gap-x-8 gap-y-4 justify-self-end grow">
                   <TrainingData className="min-w-60" data={data} speciesData={species.data}/>

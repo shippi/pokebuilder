@@ -1,3 +1,8 @@
+export interface Link {
+  name: string
+  url: string
+}
+
 export interface PokemonData {
     name: string,
     url: string
@@ -26,8 +31,22 @@ export interface PokemonType {
 }
 
 export interface EvolutionRequirement {
-  trigger: string
-  value: string | number
+  gender: string | number
+  held_item: string | number
+  item: string | number
+  known_move: string | number
+  known_move_type: string | number
+  min_affection: string | number
+  min_beauty: string | number
+  min_happiness: string | number
+  min_level: string | number
+  needs_overworld_rain: boolean
+  party_species: string | number
+  party_type: string | number
+  relative_physical_stats: string | number
+  time_of_day: string
+  trade_species: string | number
+  turn_upside_down: boolean
 }
 
 export interface EvolutionStage {
