@@ -8,6 +8,7 @@ interface Props {
 
 export default function EvolutionCard({ evolutionStage, requirementsIndex } : Props) {
   const reqs = evolutionStage.requirements ? Object.entries(evolutionStage.requirements[requirementsIndex || 0]) : undefined;
+  
   return (
     <a href={`/pokemon/${evolutionStage.id}`}>
       <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900 hover:animate-cardHover" style={{animationFillMode: "forwards"}}>

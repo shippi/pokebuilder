@@ -22,7 +22,11 @@ export default function BreedingData({ speciesData, className } : Props) {
           <tr>
             <th className="w-24 text-stone-400 font-semibold">Gender</th>
             <td className="whitespace-pre">
-               {`${(1 - speciesData.gender_rate/8) * 100}% Male\n${(speciesData.gender_rate/8) * 100}% Female`}
+               {
+                speciesData.gender_rate < 0 ?
+                "Undetermined" :
+                `${(1 - speciesData.gender_rate/8) * 100}% Male\n${(speciesData.gender_rate/8) * 100}% Female`
+              }
             </td>
           </tr>
           <tr>
