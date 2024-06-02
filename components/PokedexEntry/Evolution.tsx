@@ -17,7 +17,7 @@ export default function Evolution({ evolutionData } : Props) {
   } as EvolutionStage;
 
   return (
-    <div className="flex items-center gap-x-8">
+    <div className="flex items-center gap-x-4">
       <EvolutionCard evolutionStage={evolutionStage}/>
       { evolutionData.evolves_to.length > 0 && "⟶" }
       {
