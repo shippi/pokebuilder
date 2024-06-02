@@ -32,7 +32,7 @@ function EvolutionChart({ speciesData } : Props) {
             <div className="flex gap-x-4 py-8 items-center w-full overflow-x-scroll text-sm">
             <EvolutionCard evolutionStage={firstStage}/>
             ⟶
-            <div className="flex flex-wrap flex-col max-h-[780px] justify-center items-center gap-x-6 gap-y-12">
+            <div className="flex flex-wrap flex-col max-h-[780px] gap-x-6 gap-y-12">
               {
                 data?.evolves_to.map((evolution: any, i: number) => (
                   <Evolution key={i} evolutionData={evolution}/>

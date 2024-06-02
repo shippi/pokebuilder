@@ -22,9 +22,9 @@ function AbilityDescription({ className, ability } : Props) {
   )
 }
 
-function getEffect(data: AbilityEffect) {
-  for (let i = 0; i < data.effect_entries.length; i++) {
-    if (data.effect_entries[i].language.name === "en") return data.effect_entries[i].short_effect
+function getEffect(data: any) {
+  for (let i = data.flavor_text_entries.length - 1; i >= 0; i--) {
+    if (data.flavor_text_entries[i].language.name === "en") return data.flavor_text_entries[i].flavor_text;
   }
   return "";
 }

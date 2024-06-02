@@ -20,11 +20,14 @@ export default function Evolution({ evolutionData } : Props) {
     <div className="flex items-center gap-x-4">
       <EvolutionCard evolutionStage={evolutionStage}/>
       { evolutionData.evolves_to.length > 0 && "⟶" }
+      <div className="flex flex-wrap flex-col max-h-[780px] gap-x-6 gap-y-12">
       {
         evolutionData.evolves_to?.map((evolution: any, i: number) => (
           <Evolution key={i} evolutionData={evolution}/>
         ))
+        
       }
+      </div>
     </div>
   )
 }

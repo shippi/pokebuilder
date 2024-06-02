@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function EvolutionCard({ evolutionStage, requirementsIndex } : Props) {
-  const reqs = evolutionStage.requirements ? Object.entries(evolutionStage.requirements[requirementsIndex || 0]) : undefined;
+  const reqs = evolutionStage.requirements && evolutionStage.requirements.length > 0 ? Object.entries(evolutionStage.requirements[requirementsIndex || 0]) : undefined;
   
   return (
     <a href={`/pokemon/${evolutionStage.id}`}>
