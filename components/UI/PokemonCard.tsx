@@ -20,7 +20,7 @@ function PokemonCard({ pokemonData } : Props) {
 	});
 
   return (
-    <Link href={`/pokemon/${data?.id}`} target="_blank" className="flex flex-col grow gap-2 items-center justify-center rounded-md p-4 h-fit min-h-32 min-w-36 max-w-52 w-[20%] bg-gradient-to-b from-stone-300 to-stone-00 hover:bg-stone-300 dark:from-stone-600 hover:cursor-pointer hover:animate-cardHover dark:hover:bg-stone-600" style={{animationFillMode: "forwards"}}>
+    <Link href={`/pokemon/${data?.id}`} target="_blank" className="flex flex-col grow gap-2 items-center justify-center rounded-md p-4 h-fit min-h-32 min-w-36 max-w-52 w-[20%] bg-gradient-to-b from-stone-200 to-stone-00 hover:bg-stone-200 dark:from-stone-600 hover:cursor-pointer hover:animate-cardHover dark:hover:bg-stone-600" style={{animationFillMode: "forwards"}}>
       {
       !isLoading &&
       <>

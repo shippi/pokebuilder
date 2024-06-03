@@ -37,6 +37,10 @@ function Pokedex() {
 			})
 		}
 	}
+	
+	useEffect(() => {
+		document.title = `Pokédex | PokéBuilder`
+	}, []);
 
 	useEffect(() => {
 		scrollToRef(listRef);
