@@ -6,10 +6,11 @@ interface Props {
     selectedClassName?: string
     listItemClassName?: string
     disabled?: boolean
+    nullable?: boolean
     selected: ReactNode
     listItems: ReactNode[]
 }
-function Dropdown({ className, listItemClassName, selectedClassName, selected, listItems, disabled } : Props) {
+function Dropdown({ className, listItemClassName, selectedClassName, selected, listItems, disabled, nullable } : Props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -17,7 +18,7 @@ function Dropdown({ className, listItemClassName, selectedClassName, selected, l
 
   return (
     <div className={"flex flex-wrap h-full gap-2 min-w-[70px] text-stone-700 dark:text-white" + (disabled === true ? " pointer-events-none" : "")}  ref={dropdownRef}>
-      <button className={`flex gap-2 items-center justify-center ml-auto w-full h-full text-base hover:bg-gray-200 dark:hover:bg-stone-700 ${selectedClassName || ""} ${dropdownOpen && "border-indigo-400"}`} onClick={() => setDropdownOpen(!dropdownOpen)}>
+      <button className={`flex gap-2 items-center justify-center ml-auto w-full h-full text-base hover:bg-gray-200 dark:hover:bg-stone-700 ${selectedClassName || ""} ${dropdownOpen && "!border-indigo-400"}`} onClick={() => setDropdownOpen(!dropdownOpen)}>
         {selected}
         <i className={`bi bi-caret-${dropdownOpen ? "up" : "down"}-fill text-xs`}/>
       </button>

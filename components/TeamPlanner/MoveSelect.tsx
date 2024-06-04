@@ -28,22 +28,25 @@ export default function MoveSelect({ name, id } : Props) {
   return (
 		!isLoading && data?.length > 0 ? 
 		<Dropdown 
-			className="h-96 w-52 overflow-y-scroll translate-y-8"
-			selectedClassName="w-52 justify-between px-2 py-1 border-b border-stone-500 text-sm duration-100"
-			selected={selected < 0 ? "None" : capitalizeString(data[selected].move.name)} 
-			listItems={
-				data?.map((moveDetails: any, i: any) => (
+			className="h-96 min-w-52 overflow-y-scroll translate-y-8"
+			selectedClassName="min-w-52 justify-between px-2 py-1 border-b border-stone-500 text-sm duration-100"
+			selected={selected < 0 ? "--" : capitalizeString(data[selected].move.name)} 
+			listItems={[
+				<div className="w-full flex items-center gap-x-2 px-2 py-1" onClick={() => setSelected(-1)}>
+					--
+				</div>,
+				...data?.map((moveDetails: any, i: any) => (
 					<div className="w-full flex items-center gap-x-2 px-2 py-1" key={i} onClick={() => setSelected(i)}>
 						{ capitalizeString(moveDetails.move.name) }
 					</div>
-				)) || []} 
+				))] || []} 
 		/>
 		:
 		<Dropdown 
 			disabled={true}
-			className="h-96 w-52 translate-y-8"
-			selectedClassName="w-52 justify-between px-2 py-1 border-b border-stone-500 text-sm text-stone-500"
-				selected={"None"} 
+			className="h-96 min-w-52 translate-y-8"
+			selectedClassName="min-w-52 justify-between px-2 py-1 border-b border-stone-500 text-sm text-stone-500"
+				selected={"--"} 
 				listItems={[]} 
 		/>
   )

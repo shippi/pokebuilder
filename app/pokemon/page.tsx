@@ -55,8 +55,8 @@ function Pokedex() {
             
 				<div className="flex flex-wrap  items-center gap-x-6 gap-y-3">
 					<Dropdown 
-						className="w-[100px]"
-						selectedClassName="justify-between px-2 hover:bg-transparent hover:text-indigo-700 dark:hover:bg-transparent dark:hover:text-indigo-300 "
+						className="min-w-[100px]"
+						selectedClassName="min-w-[100px] justify-between px-2 hover:bg-transparent hover:text-indigo-700 dark:hover:bg-transparent dark:hover:text-indigo-300 "
 						selected={[currentGenText]} 
 						listItems = {[<button onClick={() => setCurrentGen(0)} className="w-full px-4 py-2 text-left">All Gens</button>, ...
 							Array(GEN_COUNTS.length - 1)

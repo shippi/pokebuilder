@@ -10,34 +10,39 @@ interface Props {
 
 export default function PokemonSelect({ pokemonList } : Props) {
 	const [selected, setSelected] = useState(-1);
-
+	
   return (
     <div className="flex gap-4 items-center">
 			<img 
 				className="h-36 w-36"
 				src = {
 					selected < 0 ?
-					"" :
+					"/questionmark.png" :
 					`${process.env.NEXT_PUBLIC_HOME_SRC}${pokemonList[selected].url.split("/").slice(-2)[0]}.png`
 			}/>
 			<div className="flex flex-col h-fit">
 				<Dropdown 
-					className="h-96 w-52 overflow-y-scroll translate-y-9"
+					className="h-96 min-w-52 overflow-y-scroll translate-y-9"
 					selectedClassName="justify-between px-2 py-1 border-b border-stone-500 "
 					selected={selected < 0 ? "None" : capitalizeString(pokemonList[selected].name)} 
-					listItems={
-						pokemonList.map((pokemon, i) => (
+					listItems={[
+						<div className="w-full flex items-center gap-x-2 px-2 py-1" onClick={() => setSelected(-1)}>
+							<img className="h-8 w-8" src="/questionmark.png"/>
+							None
+						</div>,
+						...pokemonList.map((pokemon, i) => (
 							<div className="w-full flex items-center gap-x-2 px-2 py-1" key={i} onClick={() => setSelected(i)}>
 								<img loading="lazy" className="h-8 w-8" src={`${process.env.NEXT_PUBLIC_SPRITE_SRC}/${pokemon.url.split("/").slice(-2)[0]}.png`}/>
 								{ capitalizeString(pokemon.name) }
 							</div>
-						))} 
+						))]} 
 					/>
 					<div className="h-4"/>
-					<MoveSelect name={pokemonList[selected]?.name || ""} id={selected + 1} />
-					<MoveSelect name={pokemonList[selected]?.name || ""} id={selected + 1} />
-					<MoveSelect name={pokemonList[selected]?.name || ""} id={selected + 1} />
-					<MoveSelect name={pokemonList[selected]?.name || ""} id={selected + 1} />
+					{
+						Array(4).fill("").map((value, i) => (
+							<MoveSelect key={i} name={pokemonList[selected]?.name || ""} id={selected + 1} />
+						))
+					}
 				</div>
 		</div>
   )
