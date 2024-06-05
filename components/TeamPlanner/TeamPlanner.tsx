@@ -8,6 +8,7 @@ import Spinner from "../UI/Spinner";
 import { Link } from "@/helpers/types";
 import { GEN_COUNTS } from "@/helpers/consts";
 import useCalculateSectionHeight from "@/hooks/usCalculateSectionHeight";
+import TypeCoverage from "./TypeCoverage";
 
 export default function TeamPlanner() {
   const { data, isLoading, isError } = useQuery({
@@ -17,6 +18,7 @@ export default function TeamPlanner() {
 			return data.results as Link[];
 		}
 	});
+	
   const sectionHeight = useCalculateSectionHeight();
 
   return (
@@ -34,7 +36,12 @@ export default function TeamPlanner() {
 						isLoading ?
 						<Spinner/> :
 						<TeamPlannerContextProvider>
-							<PokemonSelect pokemonList={data || []}/>
+							{
+								[...Array(6)].map((value, i) => (
+									<PokemonSelect index={i} pokemonList={data || []}/>
+								))
+							}
+							<TypeCoverage/>
           	</TeamPlannerContextProvider>
 					}
         </section>

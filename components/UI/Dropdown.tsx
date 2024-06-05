@@ -17,7 +17,7 @@ function Dropdown({ className, listItemClassName, selectedClassName, selected, l
   useClickOutside(dropdownRef, () => {if (dropdownOpen) setDropdownOpen(false)});
 
   return (
-    <div className={"flex flex-wrap h-full gap-2 min-w-[70px] text-stone-700 dark:text-white" + (disabled === true ? " pointer-events-none" : "")}  ref={dropdownRef}>
+    <div className={"relative flex flex-wrap h-full gap-2 min-w-[70px] text-stone-700 dark:text-white" + (disabled === true ? " pointer-events-none" : "")}  ref={dropdownRef}>
       <button className={`flex gap-2 items-center justify-center ml-auto w-full h-full text-base hover:bg-gray-200 dark:hover:bg-stone-700 ${selectedClassName || ""} ${dropdownOpen && "!border-indigo-400"}`} onClick={() => setDropdownOpen(!dropdownOpen)}>
         {selected}
         <i className={`bi bi-caret-${dropdownOpen ? "up" : "down"}-fill text-xs`}/>

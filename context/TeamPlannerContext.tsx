@@ -1,12 +1,15 @@
 'use client'
 
-import { PropsWithChildren, ReactNode, createContext } from "react"
+import { PropsWithChildren, ReactNode, createContext, useState } from "react"
 
 export const TeamPlannerContext = createContext<any>(null);
 
 export const TeamPlannerContextProvider = ({ children }: PropsWithChildren) => {
-	const values = {
+	const [selectedMoves, setSelectedMoves] = useState<any[]>(Array(6).fill(null));
 
+	const values = {
+		selectedMoves,
+		setSelectedMoves
 	}
 
 	return (
