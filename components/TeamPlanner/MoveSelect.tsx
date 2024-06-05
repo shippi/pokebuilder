@@ -33,17 +33,19 @@ export default function MoveSelect({ name, id, selectedIndex, index } : Props) {
 	useEffect(() => {
 		let newSelectedMoves =  [...selectedMoves];
 		if (selected == -1) return;
-
+		
 		axios
 			.get(data[selected].move.url)
-			.then(res => newSelectedMoves[selectedIndex].moves[index] = {
-				name: res.data.name,
-				type: res.data.type.name,
-				damageClass: res.data.damage_class.name
+			.then(res => {
+				newSelectedMoves[selectedIndex].moves[index] = {
+					name: res.data.name,
+					type: res.data.type.name,
+					damageClass: res.data.damage_class.name
+				}
+				setSelectedMoves(newSelectedMoves);
 			});
 
-		newSelectedMoves[selectedIndex].moves[index] = data[selected].move.name;
-		setSelectedMoves(newSelectedMoves);
+		
 	}, [selected]);
 
   return (

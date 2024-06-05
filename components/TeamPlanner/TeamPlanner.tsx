@@ -41,7 +41,7 @@ export default function TeamPlanner() {
 									<PokemonSelect index={i} pokemonList={data || []}/>
 								))
 							}
-							{/* <TypeCoverage/>*/}
+							<TypeCoverage/>
           	</TeamPlannerContextProvider>
 					}
         </section>
