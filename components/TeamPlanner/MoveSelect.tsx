@@ -32,9 +32,14 @@ export default function MoveSelect({ name, id, selectedIndex, index } : Props) {
 
 	useEffect(() => {
 		let newSelectedMoves =  [...selectedMoves];
-		if (selected == -1) return;
+		if (selected == -1 && newSelectedMoves[selectedIndex]) {
+			newSelectedMoves[selectedIndex].moves[index] = "";
+			setSelectedMoves(newSelectedMoves);
+			return;
+		}
 		
-		axios
+		if (selected > 0) {
+			axios
 			.get(data[selected].move.url)
 			.then(res => {
 				newSelectedMoves[selectedIndex].moves[index] = {
@@ -44,8 +49,7 @@ export default function MoveSelect({ name, id, selectedIndex, index } : Props) {
 				}
 				setSelectedMoves(newSelectedMoves);
 			});
-
-		
+		}	
 	}, [selected]);
 
   return (

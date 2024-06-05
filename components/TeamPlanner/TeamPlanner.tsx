@@ -38,7 +38,7 @@ export default function TeamPlanner() {
 						<TeamPlannerContextProvider>
 							{
 								[...Array(6)].map((value, i) => (
-									<PokemonSelect index={i} pokemonList={data || []}/>
+									<PokemonSelect key={i} index={i} pokemonList={data || []}/>
 								))
 							}
 							<TypeCoverage/>
