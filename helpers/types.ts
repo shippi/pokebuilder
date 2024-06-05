@@ -30,6 +30,12 @@ export interface PokemonType {
   }
 }
 
+export interface PokemonMove {
+  name: string,
+  type: string,
+  damageClass: string
+}
+
 export interface EvolutionRequirement {
   gender: string | number
   held_item: string | number

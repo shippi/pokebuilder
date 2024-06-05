@@ -11,9 +11,9 @@ export default function EvolutionCard({ evolutionStage, requirementsIndex } : Pr
   
   return (
     <a href={`/pokemon/${evolutionStage.id}`}>
-      <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-300 dark:from-stone-900 hover:animate-cardHover" style={{animationFillMode: "forwards"}}>
+      <div className="flex flex-col gap-y-2 items-center p-4 w-[200px] rounded-3xl bg-gradient-to-t from-stone-200 dark:from-stone-900 hover:animate-cardHover" style={{animationFillMode: "forwards"}}>
         {
-          <ul className="h-10">
+          <ul className="h-12">
           {
             reqs?.map((requirement: string[], i: number) => (
               <li key={i} className="py-[2px] text-xs text-center">
@@ -61,17 +61,23 @@ function mapTrigger(trigger: string) {
       return "Held Item: "
     case "gender":
       return "Gender: "
+    case "known_move":
+      return "Learns: "
+    case "trade_species":
+      return "Trade with: "
     case "trigger":
-      return ""
+    case "needs_overworld_rain":
     case "relative_physical_stats":
-      return "";
+    case "turn_upside_down":
+    case "party_type":
+      return ""
     default: 
       return capitalizeString(trigger)
   }
 }
 
 function mapValue(value: string | number, type?: string) {
-  if(value == "shed")
+  if (value == "shed")
     return (
       <>
         <span className="font-bold">Level: </span>20, empty spot in party, and Pokéball in bag
@@ -81,6 +87,9 @@ function mapValue(value: string | number, type?: string) {
   if (value == 2 && type == "gender") return "Male";
   if (value == -1 && type == "relative_physical_stats") return "Attack < Defense";
   if (value == 1 && type == "relative_physical_stats") return "Attack > Defense";
+  if (type == "turn_upside_down") return "(hold console upside down)"
+  if (type == "needs_overworld_rain") return "(during rain or fog)"
+  if (type == "party_type" && typeof value == "string") return `(${value} type Pokémon in party)`
   if (value == "d") return "Daytime";
   if (value == "n") return "Nighttime";
   if (value == "f") return "Full Moon";
