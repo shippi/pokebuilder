@@ -25,13 +25,14 @@ export default function PokemonSelect({ pokemonList, index } : Props) {
 		
 		newSelectedMoves[index] = {
 			pokemonName: pokemonList[selected].name,
+			id: pokemonList[selected].url.split("/").slice(-2)[0],
 			moves: Array(4).fill("")
 		}
 		setSelectedMoves(newSelectedMoves);
 	}, [selected]);
 
   return (
-    <div className="flex flex-wrap gap-4 items-center justify-center p-5 rounded-xl bg-stone-900">
+    <div className="flex flex-wrap gap-4 items-center justify-center p-5 rounded-xl bg-stone-300 dark:bg-stone-900">
 			<img 
 				className="h-36 w-36"
 				src = {
@@ -42,7 +43,7 @@ export default function PokemonSelect({ pokemonList, index } : Props) {
 			<div className="flex flex-col h-fit">
 				<Dropdown 
 					className="h-96 min-w-52 overflow-y-scroll translate-y-9"
-					selectedClassName="justify-between px-2 py-1 border-b border-stone-500 hover:!bg-stone-600"
+					selectedClassName="justify-between px-2 py-1 border-b border-stone-500 dark-hover:!bg-stone-600 text-sm"
 					selected={selected < 0 ? "None" : capitalizeString(pokemonList[selected].name)} 
 					listItems={[
 						<div className="w-full flex items-center gap-x-2 px-2 py-1" onClick={() => setSelected(-1)}>

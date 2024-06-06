@@ -56,7 +56,7 @@ export default function MoveSelect({ name, id, selectedIndex, index } : Props) {
 		!isLoading && data?.length > 0 ? 
 		<Dropdown 
 			className="h-96 min-w-52 overflow-y-scroll translate-y-8"
-			selectedClassName="min-w-52 justify-between px-2 py-1 border-b border-stone-500 text-sm duration-100 hover:!bg-stone-600"
+			selectedClassName="min-w-52 justify-between px-2 py-1 border-b border-stone-500 text-sm duration-100 dark-hover:!bg-stone-600"
 			selected={selected < 0 ? "--" : capitalizeString(data[selected].move.name)} 
 			listItems={[
 				<div className="w-full flex items-center gap-x-2 px-2 py-1" onClick={() => setSelected(-1)}>

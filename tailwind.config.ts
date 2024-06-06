@@ -8,6 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'bug': '#92BC2C',
+        'dark': '#424049',
+        'dragon': '#0C69C8',
+        'electric': '#F2D94E',
+        'fire': '#FBA54C',
+        'fairy': '#EE90E6',
+        'fighting': '#D3425F',
+        'flying': '#A1BBEC',
+        'ghost': '#5F6DBC',
+        'grass': '#5FBD58',
+        'ground': '#DA7C4D',
+        'ice': '#75D0C1',
+        'normal': '#A0A29F',
+        'poison': '#B763CF',
+        'psychic': '#FA8581',
+        'rock': '#C9BB8A',
+        'steel': '#5695A3',
+        'water': '#539DDF'
+      },
       animation: { 
         fadeIn: 'fadeIn 1.2s ease-in-out',
         menuSlide: 'menuSlide 1s cubic-bezier(0,1,1,1)',

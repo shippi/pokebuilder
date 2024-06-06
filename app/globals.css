@@ -7,6 +7,10 @@
 	@apply transition-colors duration-200;
 }
 
+span {
+	background: transparent !important;
+}
+
 .type img {
 	height: 60%;
 	width: 60%;
