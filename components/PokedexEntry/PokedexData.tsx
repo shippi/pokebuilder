@@ -55,7 +55,7 @@ function PokedexData({ data, speciesData, className } : Props) {
                     </span>
                     {ability.is_hidden && " (hidden ability)"}
                     <AbilityDescription 
-                      className="absolute invisible group-hover:visible text-xs bg-stone-200 dark:bg-stone-900 p-3 border-b-4 border-stone-500 mt-1 z-10 rounded-xl drop-shadow-sm" 
+                      className="absolute invisible group-hover:visible text-xs bg-stone-200 dark:bg-stone-900 p-3 border-b-4 border-stone-400 dark:border-stone-500 mt-1 z-10 rounded-xl drop-shadow-sm" 
                       ability={ability}
                     />
                   </div>
